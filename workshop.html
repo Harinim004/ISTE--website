@@ -475,7 +475,7 @@ cite {
     
     <div class="workshop-container">
       <!-- Workshop 1 -->
-      <div class="workshop-card" data-workshop="1">
+      <div class="workshop-card" data-workshop="1" id="ws1">
         <div class="workshop-content">
           <div class="workshop-image">
             <img src="assets/workshop1.jpeg" alt="POWER BI Workshop">
@@ -553,7 +553,7 @@ cite {
       </div>
       
       <!-- Workshop 2 -->
-      <div class="workshop-card" data-workshop="2" style="display: none;">
+      <div class="workshop-card" data-workshop="2" style="display: none;" id="ws2">
         <div class="workshop-content">
           <div class="workshop-image">
             <img src="assets/workshop2.jpeg" alt="Web Development Masterclass">
@@ -634,7 +634,7 @@ cite {
       </div>
       
       <!-- Workshop 3 -->
-      <div class="workshop-card" data-workshop="3" style="display: none;">
+      <div class="workshop-card" data-workshop="3" style="display: none;" id="ws3">
         <div class="workshop-content">
           <div class="workshop-image">
             <img src="assets/workshop3.jpeg" alt="ELECTRIC VEHICLE WORKSHOP">
@@ -711,7 +711,7 @@ cite {
         </div>
       </div>
        <!-- Workshop 4 -->
-       <div class="workshop-card" data-workshop="2" style="display: none;">
+       <div class="workshop-card" data-workshop="2" style="display: none;" id="ws4">
         <div class="workshop-content">
           <div class="workshop-image">
             <img src="assets/workshop4.jpg" alt="Web Development Masterclass">
@@ -880,13 +880,18 @@ This workshop will dive into the latest cybersecurity threats and defenses in th
   
   <script>
   document.addEventListener('DOMContentLoaded', function() {
+
+    let url = window.location.href;
+    console.log(url.slice(-1))
+    let index = Number(url.slice(-1));
+    console.log(index);
     // Get elements
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const workshopCounter = document.getElementById('current-workshop');
     const workshopCards = document.querySelectorAll('.workshop-card');
     
-    let currentWorkshop = 0;
+    let currentWorkshop = index-1;
     const totalWorkshops = workshopCards.length;
     
     // Update the counter text
@@ -922,6 +927,11 @@ This workshop will dive into the latest cybersecurity threats and defenses in th
     // Initialize with the first workshop
     showWorkshop(currentWorkshop);
   });
+
+
+
+
+
   </script>
 </body>
 </html>
