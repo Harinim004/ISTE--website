@@ -1788,39 +1788,47 @@ Explore the cutting-edge advancements in NLP, neural network architectures, and 
 
        
                   <script>
-                  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  let url = window.location.href;
+  let index = Number(url.slice(-1)); // Extract index from URL
+
+  // Get elements
   const prevBtn = document.getElementById("prev-btn");
   const nextBtn = document.getElementById("next-btn");
-  const eventCards = document.querySelectorAll(".event-card");
   const eventCounter = document.getElementById("current-event");
+  const eventCards = document.querySelectorAll(".event-card");
 
-  let currentIndex = 0;
+  let currentIndex = index - 1; // Adjust index to be zero-based
+  const totalEvents = eventCards.length;
 
-  function updateEventDisplay() {
-    eventCards.forEach((card, index) => {
-      card.style.display = index === currentIndex ? "block" : "none";
-    });
-    eventCounter.textContent = `Event ${currentIndex + 1} of ${eventCards.length}`;
-
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex === eventCards.length - 1;
+  // Update the counter text
+  function updateCounter() {
+    eventCounter.textContent = `Event ${currentIndex + 1} of ${totalEvents}`;
   }
 
-  prevBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateEventDisplay();
-    }
-  });
+  // Show the current event and hide others
+  function showEvent(index) {
+    eventCards.forEach((card, i) => {
+      card.style.display = i === index ? "block" : "none";
+    });
 
+    updateCounter();
+  }
+
+  // Next event button
   nextBtn.addEventListener("click", () => {
-    if (currentIndex < eventCards.length - 1) {
-      currentIndex++;
-      updateEventDisplay();
-    }
+    currentIndex = (currentIndex + 1) % totalEvents;
+    showEvent(currentIndex);
   });
 
-  updateEventDisplay();
+  // Previous event button
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + totalEvents) % totalEvents;
+    showEvent(currentIndex);
+  });
+
+  // Initialize with the correct event
+  showEvent(currentIndex);
 });
 
                     </script>
