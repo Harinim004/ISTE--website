@@ -1,9 +1,9 @@
 const mcards = [
-    { title: "", description: "", link: "carousel.html", backgroundImage: 'url(assets/workshop.jpeg)' },
-    { title: "", description: "", link: "carousel.html", backgroundImage: 'url(assets/pre-events.jpeg)' },
-    { title: "", description: "", link: "carousel.html", backgroundImage: 'url(assets/techtalk.jpeg)' },
-    { title: "", description: "", link: "carousel.html", backgroundImage: 'url(assets/events-engg.jpeg)' },
-    { title: "", description: "", link: "carousel.html", backgroundImage: 'url(assets/events-poly.jpeg)' }
+    { title: "", description: "", link: "carousel.html#workshops", backgroundImage: 'url(assets/workshop.jpeg)' },
+    { title: "", description: "", link: "carousel.html#pre-events", backgroundImage: 'url(assets/pre-events.jpeg)' },
+    { title: "", description: "", link: "carousel.html#tech-talk", backgroundImage: 'url(assets/techtalk.jpeg)' },
+    { title: "", description: "", link: "carousel.html#events-eng", backgroundImage: 'url(assets/events-engg.jpeg)' },
+    { title: "", description: "", link: "carousel.html#events-poly", backgroundImage: 'url(assets/events-poly.jpeg)' }
 ];
 
 let mcurrentIndex = 0;
