@@ -1,0 +1,31 @@
+table {
+  font-size: 1.3rem;
+  width: 50%;
+}
+table th {
+  font-size: 1.5rem;
+}
+
+th,
+td {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.table-holder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+th:nth-child(1) {
+  text-align: center;
+}
+td:nth-child(1) {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  table {
+    width: 90%;
+  }
+}
