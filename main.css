@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
     width: 50px; /* Adjust size */
     height: 50px;
     background: url('./assets/logo.png') no-repeat center/contain;
-    transform: translateX(2%);
+    transform: translateX(7%);
    
 }
 .iste-logo {

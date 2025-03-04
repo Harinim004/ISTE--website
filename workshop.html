@@ -757,7 +757,7 @@ cite {
             
             <p class="workshop-description">
               
-This workshop will dive into the latest cybersecurity threats and defenses in the AI era. Learn about ethical hacking, AI-driven cyber threats, data privacy, and cutting-edge security techniques to safeguard digital assets.
+            This workshop will dive into the latest cybersecurity threats and defenses in the AI era. Learn about ethical hacking, AI-driven cyber threats, data privacy, and cutting-edge security techniques to safeguard digital assets.
             </p>
             
             <div class="contact-section">
@@ -792,17 +792,16 @@ This workshop will dive into the latest cybersecurity threats and defenses in th
         </div>
       </div>
       <!-- Workshop 5 -->
-      <div class="workshop-card" data-workshop="2" style="display: none;">
+      <div class="workshop-card" data-workshop="2" style="display: none;" id="ws4">
         <div class="workshop-content">
           <div class="workshop-image">
-            <div id="ws5">
             <img src="assets/workshop5.jpg" alt="Web Development Masterclass">
              
           </div>
           
           <div class="workshop-details">
             <div class="workshop-header">
-              <div class="workshop-icon">C</div>
+              <div class="workshop-icon">S</div>
               <h2 class="workshop-title">SOLIDWORKS WORKSHOP</h2>
             </div>
             
@@ -834,19 +833,20 @@ This workshop will dive into the latest cybersecurity threats and defenses in th
             
             <div class="quote-section">
               <blockquote>"Design is intelligence made visible."</blockquote>
-              <cite>~Alina Wheeler</cite>
+              <cite>~Alina Wheeler
+              </cite>
             </div>
             
             <p class="workshop-description">
+              
               This hands-on workshop will help you master SolidWorks, a leading 3D CAD software, to create precise models, assemblies, and simulations. Learn how to turn ideas into reality with powerful design tools! 
-
             </p>
             
             <div class="contact-section">
               <div class="contact-label">Contact Information</div>
               <div class="contact-grid">
                 <div class="contact-person">
-                  <span class="contact-name">Amal S.S:</span>
+                  <span class="contact-name">Amal S:</span>
                   <span class="contact-phone">7736168640</span>
                 </div>
                 <div class="contact-person">
@@ -872,7 +872,6 @@ This workshop will dive into the latest cybersecurity threats and defenses in th
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
           </button></a>
         </div>
-        </div>
       </div>
       
     </div>
@@ -883,6 +882,10 @@ This workshop will dive into the latest cybersecurity threats and defenses in th
 
     let url = window.location.href;
     let index = Number(url.slice(-1));
+    if (isNaN(index)) {
+    index = 1;
+    }
+
     
     // Get elements
     const prevBtn = document.getElementById('prev-btn');
