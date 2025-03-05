@@ -963,6 +963,7 @@ body {
     }
     
     function moveSlide(sliderId, direction) {
+        event.preventDefault();
         const slider = document.getElementById(sliderId);
         const slides = slider.querySelectorAll('.slide');
         let currentSlide = parseInt(slider.dataset.currentSlide || 0);
