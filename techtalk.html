@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshops Information</title>
+  <style>
+    /* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #3c2a21;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Network Background */
+.network-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+}
+
+.network-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, rgba(60, 42, 33, 0.8) 0%, rgba(60, 42, 33, 0.4) 100%),
+    linear-gradient(to right, rgba(60, 42, 33, 0.8) 0%, rgba(60, 42, 33, 0.4) 100%);
+}
+
+/* Header */
+header {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 0 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #e67e22;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #f39c12;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #d35400;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+  background-color: #e67e22;
+}
+
+.workshop-counter {
+  color: #e67e22;
+  font-weight: 500;
+}
+
+/* Workshop Card */
+.workshop-container {
+  position: relative;
+}
+
+.workshop-card {
+  background: linear-gradient(135deg, #1e1611 0%, #2c1c15 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.workshop-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .workshop-content {
+    flex-direction: row;
+  }
+}
+
+/* Workshop Image */
+.workshop-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .workshop-image {
+    width: 40%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.workshop-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.register-date {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e67e22;
+}
+
+.register-label {
+  font-size: 0.75rem;
+  color: #e67e22;
+  margin-bottom: 0.25rem;
+}
+
+.register-day {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f39c12;
+}
+
+.register-month {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  color: #e67e22;
+}
+
+/* Workshop Details */
+.workshop-details {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.workshop-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.workshop-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: #e67e22;
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.workshop-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f39c12;
+}
+
+/* Workshop Info */
+.workshop-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+a {
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .workshop-info {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: #e67e22;
+  margin-right: 0.5rem;
+}
+
+/* Fee Section */
+.fee-section {
+  margin-bottom: 1.5rem;
+}
+
+.fee-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #e67e22;
+}
+
+.fee-amount {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #f39c12;
+}
+
+/* Platform Section */
+.platform-section {
+  margin-bottom: 1.5rem;
+}
+
+.platform-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #e67e22;
+}
+
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #2c1c15;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid #e67e22;
+}
+
+.platform-indicator {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #e67e22;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+/* Quote Section */
+.quote-section {
+  border-top: 1px solid #e67e22;
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+blockquote {
+  font-style: italic;
+  color: #f5f5f5;
+  margin-bottom: 0.5rem;
+}
+
+cite {
+  color: #e67e22;
+}
+
+/* Workshop Description */
+.workshop-description {
+  color: #f5f5f5;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+  background-color: #2c1c15;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.contact-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #e67e22;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-person {
+  display: flex;
+  align-items: center;
+}
+
+.contact-name {
+  font-weight: 500;
+  margin-right: 0.5rem;
+  color: #f39c12;
+}
+
+/* Workshop Footer */
+.workshop-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1611;
+  padding: 1rem;
+  border-top: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.partner-info {
+  display: flex;
+  align-items: center;
+}
+
+.partner-logo {
+  background-color: #2c1c15;
+  padding: 0.25rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  border: 1px solid #e67e22;
+}
+
+.partner-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: #e67e22;
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.register-btn {
+  display: flex;
+  align-items: center;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.register-btn:hover {
+  background-color: #d35400;
+}
+
+.register-btn svg {
+  margin-left: 0.5rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2c1c15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e67e22;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d35400;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .network-bg {
+    background-size: 30px 30px;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="network-bg"></div>
+  
+  <!-- Header -->
+  <header>
+    <h1>EVENTS FOR POLYTECHNIC</h1>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <div class="navigation">
+      <button id="prev-btn" class="nav-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      
+      <div class="workshop-counter">
+        <span id="current-workshop">Tech Talks 1 of 3</span>
+      </div>
+      
+      <button id="next-btn" class="nav-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+    
+    <div class="workshop-container">
+    <!-- EVENTS 1 -->
+<div class="workshop-card" data-workshop="1" id="tt1">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt1.jpg" alt="FROM IEAD TO STARTUP:TURN VISION INTO REALITY">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">FROM IEAD TO STARTUP:TURN VISION INTO REALITY</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 9, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>10 AM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"The way to get started is to quit talking and begin nothing"
+</blockquote>
+          <cite>~Walt Disney
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Gain insights into market strategies, funding opportunities, and the entrepreneurial mindset needed to succeed.
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/from-idea-to-startup-turn-vision-into-reality
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+
+<!-- EVENTS 2 -->
+<div class="workshop-card" data-workshop="1" id="tt2">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt2.jpg" alt="DIGITAL TRANSFORMATION IN POWER SECTOR">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">DIGITAL TRANSFORMATION IN POWER SECTOR</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 9, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>10 AM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>""The power of digital transformation lies not just in technology, but in its ability to reshape industries and drive innovation."
+
+            "
+</blockquote>
+          <cite>
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Explore how digitalization is revolutionizing the power industry, enhancing efficiency, and paving the way for a smarter, more sustainable energy future. 
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/digital-transformation-in-power-sector
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+<!-- EVENTS 3 -->
+<div class="workshop-card" data-workshop="1" id="tt3">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt3.jpg" alt="LAUNCHING A STARTUP WITH ZERO INVESTMENT USING DIGITAL MARKETING">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">LAUNCHING A STARTUP WITH ZERO INVESTMENT USING DIGITAL MARKETING</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 9, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>1:30 PM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"If you are not taking care of your customer, your competitor will."
+
+</blockquote>
+          <cite>~ Bob Hooey
+
+        </cite>
+        </div>
+        
+        <p class="workshop-description">Learn proven strategies, growth hacks, and marketing techniques that can turn your ideas into a thriving business.
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/digital-marketing5
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+<!-- EVENTS 4 -->
+<div class="workshop-card" data-workshop="1" id="tt4">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt4.jpg" alt="THINK BEFORE YOU THINK">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">THINK BEFORE YOU THINK</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 9, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>10 AM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"The quieter you become, the more you are able to hear."
+</blockquote>
+          <cite>~Ram Dass
+
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Learn how ethical hackers identify vulnerabilities, secure systems, and protect sensitive data from cyber threats.
+ 
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/think-before-you-click
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+<!-- EVENTS 5 -->
+<div class="workshop-card" data-workshop="1" id="tt5">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt5.jpg" alt="SPACE EXPLORATION WITH AI">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">SPACE EXPLORATION WITH AI</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 8, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>2 PM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"The important achievement of Apollo was demonstrating that humanity is not forever chained to this planet."
+</blockquote>
+          <cite>~Neil Armstrong
+
+
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Discover how AI is enhancing our understanding of the cosmos, optimizing space missions, and paving the way for the future of interstellar exploration.
+
+ 
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/space-exploration-with-ai
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+<!-- EVENTS 6 -->
+<div class="workshop-card" data-workshop="1" id="tt6">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt6.jpg" alt="CAREER PATHWAYS AFTER B.TECH">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">CAREER PATHWAYS AFTER B.TECH</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 8, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>1:30 PM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"Opportunities don't happen, you create them". 
+
+</blockquote>
+          <cite>~Criss Grosser
+
+
+
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Gain expert guidance on career options, industry trends, and strategies to build a successful future in engineering and beyond.
+
+
+
+ 
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/career-pathways-after-btech
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+<!-- EVENTS 7 -->
+<div class="workshop-card" data-workshop="1" id="tt7">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt7.jpg" alt="MODERN TRENDS IN FEATURE ENGINEERING FOR PERFORMANCE IMPROVEMENT OF MACHINE LEARNING MODELS">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">MODERN TRENDS IN FEATURE ENGINEERING FOR PERFORMANCE IMPROVEMENT OF MACHINE LEARNING MODELS</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 7, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>8 PM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"The goal is to turn data into information, and information into insight."
+
+
+</blockquote>
+          <cite>~Carly Fiorina
+
+
+
+
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Discover cutting-edge techniques in feature engineering that refine data representation, boost model accuracy, and optimize machine learning workflows for real-world applications.
+
+
+
+
+ 
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/machine-learning-models
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+<!-- EVENTS 8 -->
+<div class="workshop-card" data-workshop="1" id="tt8">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt8.jpg" alt="PROCESS SAFETY FUNDAMENTALS AT PETROCHEMICALS INDUSTRIES">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">PROCESS SAFETY FUNDAMENTALS AT PETROCHEMICALS INDUSTRIES</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 7, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>7 PM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"Safety is not a gadget but a state of mind."
+
+</blockquote>
+          <cite>~ Eleanor Everet
+        </cite>
+        </div>
+        
+        <p class="workshop-description">Explore key safety principles, risk management strategies, and industry best practices essential for ensuring safe operations in petrochemical industries.
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/process-safety-fundamentals-at-petrochemical-industries
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div>
+
+
+<!-- EVENTS 9 -->
+<div class="workshop-card" data-workshop="1" id="tt9">
+    <div class="workshop-content">
+      <div class="workshop-image">
+        <img src="assets/tt9.jpg" alt=">GENERATIVE AI:THE TECH POWERING THE FUTURE">
+      </div>
+      
+      <div class="workshop-details">
+        <div class="workshop-header">
+          <div class="workshop-icon">G</div>
+          <h2 class="workshop-title">GENERATIVE AI:THE TECH POWERING THE FUTURE</h2>
+        </div>
+        
+        <div class="workshop-info">
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            <span>March 8, 2025</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>1:30 PM</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Govt. Engineering College Kozhikode</span>
+          </div>
+          <div class="info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>ISTE GECK Students Chapter</span>
+          </div>
+        </div>
+        
+        <!--<div class="fee-section">
+          <div class="fee-label">Registration Fee</div>
+          <div class="fee-amount">₹150</div>
+        </div>-->
+  
+        
+        <div class="quote-section">
+          <blockquote>"Generative AI isn’t just automating tasks; it’s amplifying human creativity."
+
+
+</blockquote>
+          <cite>~ Fei-Fei Li
+
+        </cite>
+        </div>
+        
+        <p class="workshop-description"> Dive into the world of Generative AI, where machines create, innovate, and redefine possibilities.
+
+
+
+        </p>
+        
+        <div class="contact-section">
+          <div class="contact-label">Contact Information</div>
+          <div class="contact-grid">
+            <div class="contact-person">
+              <span class="contact-name">Dasvani:</span>
+              <span class="contact-phone">   9645388003</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="workshop-footer">
+      
+      
+      <a href="https://www.yepdesk.com/generative-ai-the-tech-powering-the-future
+      ">
+        <button class="register-btn">
+        Register Now
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+      </button></a>
+    </div>
+  </div>
+  
+  
+  </div> 
+
+      
+    </div>
+  </main>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    let url = window.location.href;
+    let index = Number(url.slice(-1));
+    if (isNaN(index)) {
+    index = 1;
+    }
+
+    
+    // Get elements
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const workshopCounter = document.getElementById('current-workshop');
+    const workshopCards = document.querySelectorAll('.workshop-card');
+    
+    let currentWorkshop = index-1;
+    const totalWorkshops = workshopCards.length;
+    
+    // Update the counter text
+    function updateCounter() {
+      workshopCounter.textContent = `Event ${currentWorkshop + 1} of ${totalWorkshops}`;
+    }
+    
+    // Show the current workshop and hide others
+    function showWorkshop(index) {
+      workshopCards.forEach((card, i) => {
+        if (i === index) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      updateCounter();
+    }
+    
+    // Next workshop button
+    nextBtn.addEventListener('click', function() {
+      currentWorkshop = (currentWorkshop + 1) % totalWorkshops;
+      showWorkshop(currentWorkshop);
+    });
+    
+    // Previous workshop button
+    prevBtn.addEventListener('click', function() {
+      currentWorkshop = (currentWorkshop - 1 + totalWorkshops) % totalWorkshops;
+      showWorkshop(currentWorkshop);
+    });
+    
+    // Initialize with the first workshop
+    showWorkshop(currentWorkshop);
+  });
+
+
+
+
+
+  </script>
+</body>
+</html>
