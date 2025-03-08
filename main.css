@@ -152,7 +152,7 @@ body::-webkit-scrollbar {
     .logo {
         width: 40px; /* Reduce logo size for mobile */
         height: 40px;
-        transform: translateX(10%);
+        transform: translateX(62%);
     }
 
     .register-btn {
