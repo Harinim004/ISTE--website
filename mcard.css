@@ -106,5 +106,9 @@
     #events-mobile{
         display: flex;
     }
-    
+    .iste-logo{
+        width:30px;
+        height:30px;
+        transform:translateX(35%);
+    }
 }
