@@ -97,7 +97,11 @@
     background: #2a0b01;
 }
 
-
+.iste-logo{
+    width:30px;
+    height:30px;
+    transform:translateX(35%);
+}
 
 
 
